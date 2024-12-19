@@ -2,7 +2,6 @@
 
 #define NUM_EMPLOYEES 10
 
-// ساختار برای ذخیره اطلاعات کارمند
 typedef struct {
     char name[50];
     char nationalID[15];
@@ -17,7 +16,6 @@ int main() {
     Employee employees[NUM_EMPLOYEES];
     FILE *file;
 
-    // دریافت اطلاعات کارمندان
     for (int i = 0; i < NUM_EMPLOYEES; i++) {
         printf("Enter details for employee %d:\n", i + 1);
 
@@ -39,11 +37,9 @@ int main() {
         printf("Insurance: ");
         scanf("%f", &employees[i].insurance);
 
-        // محاسبه حقوق خالص
         employees[i].netSalary = employees[i].baseSalary + employees[i].bonus - (employees[i].tax + employees[i].insurance);
     }
 
-    // ذخیره اطلاعات در فایل
     file = fopen("salaries.txt", "w");
     if (file == NULL) {
         printf("Error opening file!\n");
@@ -63,7 +59,6 @@ int main() {
     }
     fclose(file);
 
-    // نمایش فیش حقوقی
     for (int i = 0; i < NUM_EMPLOYEES; i++) {
         printf("\n--- Payslip for Employee %d ---\n", i + 1);
         printf("Name: %s\n", employees[i].name);
